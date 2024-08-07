@@ -1,5 +1,6 @@
 import Input from "./components/Input";
 import Button from './components/Button'
+import Title from './components/Title';
 
 import { Container, Content, Row } from "./styles";
 import { useState } from "react";
@@ -68,6 +69,7 @@ const App = () => {
   return (
     <Container>
       <Content>
+        <Title />
         < Input value={currentNumber}/>
         <Row>
           <Button label="c" onClick={handleOnClear}/>
