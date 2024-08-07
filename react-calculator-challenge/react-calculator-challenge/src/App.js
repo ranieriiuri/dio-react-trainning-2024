@@ -78,6 +78,34 @@ const App = () => {
     }
   }
 
+  const handleNumbersPercentage = () => {
+    
+    if (firstNumber === '0') {
+      setFirstNumber(String(currentNumber)); 
+      setCurrentNumber('0');
+      setOperation('%');
+
+    } else {
+      const percent = `${(Number(firstNumber) / 100) * Number(currentNumber)}`;
+      setCurrentNumber(String(percent));
+      setOperation('');
+    }
+  }
+
+  const handleNumbersSquareRoot = () => {
+    
+    if (firstNumber === '0') {
+      setFirstNumber(String(currentNumber)); 
+      setCurrentNumber('0');
+      setOperation('√');
+    }  else {
+      const sqrt = Math.sqrt(Number(currentNumber));
+        setCurrentNumber(String(sqrt));
+        setOperation('');
+     }
+  }
+
+  //Comportamentos ao utilizar o '='
   const handleEquals = () => {
     if (firstNumber !== '0' && operation !== '' && currentNumber !== '0') {
       switch(operation){
@@ -92,6 +120,13 @@ const App = () => {
           break;
         case '/':
           handleDivideNumbers();
+          break;
+        case '%':
+          handleNumbersPercentage();
+          break;
+        case '√':
+          handleNumbersSquareRoot();
+          break;
         default:
           break;
       }
@@ -103,16 +138,16 @@ const App = () => {
     <Container>
       <Content>
         <Title />
-        < Input value={currentNumber}/>
+        < Input value={currentNumber} />
         <Row>
           <Button label="c" onClick={handleOnClear}/>
           <Button label="." onClick={() => handleAddNumber('.')}/>
-          <Button label="√" onClick={() => handleAddNumber('√')}/>
+          <Button label="√" onClick={handleNumbersSquareRoot()}/>
           <Button label="π" onClick={() => handleAddNumber('3.14159265359')}/>
         </Row>
         <Row>
           <Button label="0" onClick={() => handleAddNumber('0')}/>
-          <Button label="%" onClick={() => handleAddNumber('%')}/>
+          <Button label="%" onClick={handleNumbersPercentage}/>
           <Button label="/" onClick={handleDivideNumbers}/>
           <Button label="*" onClick={handleMultiplyNumbers}/>
         </Row>
