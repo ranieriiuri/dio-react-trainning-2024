@@ -93,17 +93,19 @@ const App = () => {
   }
 
   const handleNumbersSquareRoot = () => {
+    // Calcula a raiz quadrada do currentNumber
+    const num = Number(currentNumber);
     
-    if (firstNumber === '0') {
-      setFirstNumber(String(currentNumber)); 
-      setCurrentNumber('0');
-      setOperation('√');
-    }  else {
-      const sqrt = Math.sqrt(Number(currentNumber));
-        setCurrentNumber(String(sqrt));
-        setOperation('');
-     }
-  }
+    // Verifica se o número é não-negativo
+    if (num < 0) {
+      setCurrentNumber('Error');
+    } else {
+      const sqrt = Math.sqrt(num);
+      setCurrentNumber(String(sqrt)); 
+    }
+    
+    setOperation('');
+  };
 
   //Comportamentos ao utilizar o '='
   const handleEquals = () => {
@@ -142,7 +144,7 @@ const App = () => {
         <Row>
           <Button label="c" onClick={handleOnClear}/>
           <Button label="." onClick={() => handleAddNumber('.')}/>
-          <Button label="√" onClick={handleNumbersSquareRoot()}/>
+          <Button label="√" onClick={handleNumbersSquareRoot}/>
           <Button label="π" onClick={() => handleAddNumber('3.14159265359')}/>
         </Row>
         <Row>
