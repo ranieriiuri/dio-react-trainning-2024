@@ -50,6 +50,34 @@ const App = () => {
     }
   }
 
+  const handleMultiplyNumbers = () => {
+    
+    if (firstNumber === '0') {
+      setFirstNumber(String(currentNumber)); 
+      setCurrentNumber('0');
+      setOperation('*');
+
+    } else {
+      const mult = Number(firstNumber) * Number(currentNumber);
+      setCurrentNumber(String(mult));
+      setOperation('');
+    }
+  }
+
+  const handleDivideNumbers = () => {
+    
+    if (firstNumber === '0') {
+      setFirstNumber(String(currentNumber)); 
+      setCurrentNumber('0');
+      setOperation('/');
+
+    } else {
+      const divide = Number(firstNumber) / Number(currentNumber);
+      setCurrentNumber(String(divide));
+      setOperation('');
+    }
+  }
+
   const handleEquals = () => {
     if (firstNumber !== '0' && operation !== '' && currentNumber !== '0') {
       switch(operation){
@@ -59,6 +87,11 @@ const App = () => {
         case '-':
           handleRemNumbers();
           break;
+        case '*':
+          handleMultiplyNumbers();
+          break;
+        case '/':
+          handleDivideNumbers();
         default:
           break;
       }
@@ -73,15 +106,15 @@ const App = () => {
         < Input value={currentNumber}/>
         <Row>
           <Button label="c" onClick={handleOnClear}/>
-          <Button label="µ" onClick={() => handleAddNumber('µ')}/>
+          <Button label="." onClick={() => handleAddNumber('.')}/>
           <Button label="√" onClick={() => handleAddNumber('√')}/>
-          <Button label="π" onClick={() => handleAddNumber('π')}/>
+          <Button label="π" onClick={() => handleAddNumber('3.14159265359')}/>
         </Row>
         <Row>
           <Button label="0" onClick={() => handleAddNumber('0')}/>
           <Button label="%" onClick={() => handleAddNumber('%')}/>
-          <Button label="." onClick={() => handleAddNumber('.')}/>
-          <Button label="*" onClick={() => handleAddNumber('*')}/>
+          <Button label="/" onClick={handleDivideNumbers}/>
+          <Button label="*" onClick={handleMultiplyNumbers}/>
         </Row>
         <Row>
           <Button label="7" onClick={() => handleAddNumber('7')}/>
